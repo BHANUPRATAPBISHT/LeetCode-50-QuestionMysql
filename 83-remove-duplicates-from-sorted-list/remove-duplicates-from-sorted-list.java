@@ -12,7 +12,7 @@ class Solution {
             } else {
                 i.next = j;
                 i = j;
-                j = j.next;
+                
             }
         }
 
