@@ -1,21 +1,43 @@
+import java.util.HashMap;
+
 class Solution {
     public boolean isAnagram(String s, String t) {
-       if (s.length() != t.length()) {
-           return false;
-       }
-  
-       int[] count = new int[26];
-       for (int i = 0; i < s.length(); i++) {
-           count[s.charAt(i) - 'a']++;
-       }   
-       for (int i = 0; i < t.length(); i++) {
-           count[t.charAt(i) - 'a']--;
-       }   
-       for (int i = 0; i < count.length; i++) {
-           if (count[i] != 0) {
-               return false;
-           }
-       } 
-       return true;
+        
+        if(s.length() != t.length()) {
+            return false;
+        }
+        
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        // Count frequency of s
+        for(int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            
+            if(map.containsKey(ch)) {
+                int freq = map.get(ch);
+                map.put(ch, freq + 1);
+            } else {
+                map.put(ch, 1);
+            }
+        }
+        
+        // Reduce frequency using t
+        for(int i = 0; i < t.length(); i++) {
+            char ch = t.charAt(i);
+            
+            if(!map.containsKey(ch)) {
+                return false;
+            }
+            
+            int freq = map.get(ch);
+            
+            if(freq == 0) {
+                return false;
+            }
+            
+            map.put(ch, freq - 1);
+        }
+        
+        return true;
     }
 }
