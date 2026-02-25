@@ -5,7 +5,7 @@ class Solution {
         while(i<arr.length)
         {
             int idx=arr[i]-1;
-            if(arr[i]==i+1 || arr[idx]==arr[i] || arr[i]>n)
+            if(arr[i]==i+1 || arr[idx]==arr[i]  )
             
             {
                 i++;
